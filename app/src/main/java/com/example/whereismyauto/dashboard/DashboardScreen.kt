@@ -28,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
@@ -36,6 +37,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.whereismyauto.R
+import com.example.whereismyauto.ui.theme.BottomShapes
 import com.example.whereismyauto.ui.theme.Shapes
 import com.example.whereismyauto.ui.theme.color_background
 import com.example.whereismyauto.ui.theme.color_black
@@ -60,9 +62,9 @@ fun DashboardScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color_tool_bar)
+                .background(color_tool_bar, BottomShapes.small)
                 .height(80.dp)
-                .border(1.dp, color_white, Shapes.small),
+                .border(1.dp, color_white, BottomShapes.small),
             verticalAlignment = Alignment.CenterVertically,
 
 
@@ -77,7 +79,7 @@ fun DashboardScreen(
          Column(
             modifier = Modifier
                 .padding(16.dp)
-                .background(color_white)
+                .background(color_white, Shapes.medium)
                 .fillMaxWidth(),
             horizontalAlignment =  Alignment.CenterHorizontally
         ) {
@@ -85,9 +87,10 @@ fun DashboardScreen(
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
-                    .background(color_white),
+                    .background(color_white, Shapes.medium),
                 viewModel = viewModel,
-                label = stringResource(id = R.string.starting_point),
+                label = "",
+                hint = stringResource(id = R.string.starting_point)
             )
             IconButton(
                 onClick = {
@@ -148,6 +151,7 @@ fun FromStopInputField(
     modifier: Modifier,
     viewModel: DashboardViewModel,
     label : String,
+    hint: String
 ){
     val brush = remember {
         Brush.linearGradient(
@@ -173,6 +177,12 @@ fun FromStopInputField(
             unfocusedIndicatorColor = color_primary,
             containerColor = color_white
         ),
+//        placeholder = {
+//                      Text(
+//                          text = "From",
+//                          color = color_light_grey
+//                      )
+//        },
         textStyle = TextStyle(brush = brush)
     )
 }
