@@ -34,5 +34,5 @@ fun AppHeader(
             style = typography.titleMedium
         )
     }
-
 }
+

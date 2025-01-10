@@ -71,6 +71,12 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.android.identity:identity-jvm:202411.1")
 
+    implementation ("androidx.navigation:navigation-compose:2.5.3")
+    implementation ("org.osmdroid:osmdroid-android:6.1.16")
+    implementation ("org.osmdroid:osmdroid-wms:6.1.16")
+    implementation ("org.osmdroid:osmdroid-mapsforge:6.1.16")
+    implementation("androidx.activity:activity-compose:1.7.0-rc01")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")

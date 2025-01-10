@@ -1,8 +1,9 @@
-package com.example.whereismyauto.dashboard
+package com.example.whereismyauto.search_dashboard
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -11,24 +12,23 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.AlertDialogDefaults.shape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ButtonElevation
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
@@ -36,6 +36,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.whereismyauto.R
 import com.example.whereismyauto.ui.theme.BottomShapes
 import com.example.whereismyauto.ui.theme.Shapes
@@ -49,8 +50,8 @@ import com.example.whereismyauto.ui.theme.color_white
 import com.example.whereismyauto.ui.theme.typography
 
 @Composable
-fun DashboardScreen(
-    viewModel: DashboardViewModel
+fun SearchScreen(
+    viewModel: SearchViewModel
 ){
     Column(
         modifier = Modifier
@@ -59,23 +60,39 @@ fun DashboardScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ){
-        Row(
+
+        Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(color_tool_bar, BottomShapes.small)
-                .height(80.dp)
-                .border(1.dp, color_white, BottomShapes.small),
-            verticalAlignment = Alignment.CenterVertically,
-
-
-        ){
-            Text(
-                text = "Dashboard",
-                modifier = Modifier.padding(16.dp),
-                style = typography.titleLarge,
-                color = color_white
-            )
+                .height(80.dp),
+            shape = BottomShapes.small,
+            color = MaterialTheme.colorScheme.primary,
+            tonalElevation = 4.dp,
+            shadowElevation = 4.dp
+        ) {
+            Row(
+                modifier = Modifier.fillMaxSize(),
+                verticalAlignment = Alignment.Bottom,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Dashboard",
+                    modifier = Modifier.padding(top = 36.dp, start = 16.dp, bottom = 8.dp),
+                    style = typography.titleMedium,
+                    color = MaterialTheme.colorScheme.primaryContainer
+                )
+                Icon(
+                    modifier =Modifier.padding(top = 36.dp, start = 16.dp, bottom = 8.dp, end = 16.dp)
+                        .height(24.dp)
+                        .width(24.dp),
+                    painter = painterResource(id = R.drawable.profile_icon),
+                    contentDescription = "Profile",
+                    tint = MaterialTheme.colorScheme.primaryContainer
+                )
+            }
         }
+
+
          Column(
             modifier = Modifier
                 .padding(16.dp)
@@ -89,7 +106,6 @@ fun DashboardScreen(
                     .fillMaxWidth()
                     .background(color_white, Shapes.medium),
                 viewModel = viewModel,
-                label = "",
                 hint = stringResource(id = R.string.starting_point)
             )
             IconButton(
@@ -105,8 +121,10 @@ fun DashboardScreen(
                             .width(32.dp)
                             .height(32.dp),
                         painter = painterResource(id = R.drawable.baseline_swap_vert_24),
-                        contentDescription = "swap_icon"
-                    )
+                        contentDescription = "swap_icon",
+                        tint = MaterialTheme.colorScheme.primaryContainer
+
+                        )
                 }
 
             )
@@ -116,7 +134,7 @@ fun DashboardScreen(
                     .fillMaxWidth()
                     .background(color_white),
                 viewModel = viewModel,
-                label = stringResource(id = R.string.ending_point),
+                hint = stringResource(id = R.string.ending_point),
             )
             TextButton(
                 modifier = Modifier
@@ -125,8 +143,7 @@ fun DashboardScreen(
                     .height(50.dp)
                     .border(1.dp, color_white, Shapes.medium),
                 colors = ButtonDefaults.buttonColors(
-                     color_primary,
-                    color_tool_bar
+                     MaterialTheme.colorScheme.primary,
                 ),
                 shape = Shapes.medium,
                 onClick = {
@@ -136,12 +153,68 @@ fun DashboardScreen(
                 Text(
                     text = "Find Auto",
                     style = typography.titleSmall,
-                    color = color_white
+                    color = MaterialTheme.colorScheme.primaryContainer
                 )
             }
 
         }
 
+        Row (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp, start = 16.dp, end = 16.dp, bottom = 8.dp)
+                .background(color_white, Shapes.medium),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ){
+            SearchInputField(
+                modifier = Modifier
+                    .padding(4.dp)
+                    .fillMaxWidth(0.6f)
+                    .background(color_white, Shapes.medium),
+                viewModel = viewModel,
+                hint = stringResource(id = R.string.auto_id)
+            )
+            IconButton(
+                modifier = Modifier
+                    .padding(top = 4.dp, bottom = 4.dp, end = 10.dp)
+                    .background(MaterialTheme.colorScheme.primary, Shapes.large),
+                onClick = { viewModel.handleSearchAuto() }
+            ) {
+                Icon(
+                    painter = painterResource(id = R.drawable.baseline_search_24),
+                    contentDescription = "search_icon",
+                    tint = MaterialTheme.colorScheme.primaryContainer
+                )
+                
+            }
+        }
+
+        Column(
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+                .background(color_white, Shapes.medium)
+                .fillMaxHeight(),
+        ) {
+            Text(
+                text = "Active Rides",
+                modifier = Modifier.padding(16.dp),
+                style = typography.titleMedium,
+            )
+            LazyColumn(
+                modifier = Modifier.fillMaxWidth(),
+                content = {
+                items(viewModel.activeRides.size){
+                    Text(
+                        text = viewModel.activeRides[it],
+                        style = typography.titleSmall,
+                        modifier = Modifier.padding(16.dp)
+                    )
+                }
+            }
+            )
+        }
     }
 }
 
@@ -149,8 +222,7 @@ fun DashboardScreen(
 @Composable
 fun FromStopInputField(
     modifier: Modifier,
-    viewModel: DashboardViewModel,
-    label : String,
+    viewModel: SearchViewModel,
     hint: String
 ){
     val brush = remember {
@@ -168,22 +240,21 @@ fun FromStopInputField(
             viewModel.updateStartingPoint(it)
         },
         modifier = modifier.background(color_white),
-        label = { Text(
-            label,
-            color = color_light_grey
-            ) },
         colors = TextFieldDefaults.textFieldColors(
             focusedIndicatorColor = color_secondary,
             unfocusedIndicatorColor = color_primary,
             containerColor = color_white
         ),
-//        placeholder = {
-//                      Text(
-//                          text = "From",
-//                          color = color_light_grey
-//                      )
-//        },
-        textStyle = TextStyle(brush = brush)
+        placeholder = {
+                      Text(
+                          text = hint,
+                          color = color_light_grey,
+                      )
+        },
+        textStyle = TextStyle(
+            brush = brush,
+            fontSize = 24.sp
+        )
     )
 }
 
@@ -191,8 +262,8 @@ fun FromStopInputField(
 @Composable
 fun ToStopInputField(
     modifier: Modifier,
-    viewModel: DashboardViewModel,
-    label : String,
+    viewModel: SearchViewModel,
+    hint : String,
 ){
     val brush = remember {
         Brush.linearGradient(
@@ -209,22 +280,67 @@ fun ToStopInputField(
             viewModel.updateDestinationPoint(it)
         },
         modifier = modifier,
-        label = { Text(
-            label,
-            color = color_light_grey
-        ) },
+        placeholder = {
+            Text(
+                text = hint,
+                color = color_light_grey
+            )
+        },
         colors = TextFieldDefaults.textFieldColors(
             focusedIndicatorColor = color_secondary,
             unfocusedIndicatorColor = color_primary,
             containerColor = color_white
         ),
-        textStyle = TextStyle(brush = brush)
+        textStyle = TextStyle(
+            brush = brush,
+            fontSize = 24.sp
+            )
     )
 }
 
-
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun SearchInputField(
+    modifier: Modifier,
+    viewModel: SearchViewModel,
+    hint: String
+){
+    val brush = remember {
+        Brush.linearGradient(
+            colors = listOf(
+                color_primary,
+                color_tool_bar,
+                color_black
+            )
+        )
+    }
+    TextField(
+        value = viewModel.searchAutoName,
+        onValueChange = {
+            viewModel.updateSearchAutoName(it)
+        },
+        modifier = modifier,
+        maxLines = 1,
+        placeholder = {
+            Text(
+                text = hint,
+                color = color_light_grey,
+                style = typography.titleSmall
+            )
+        },
+        colors = TextFieldDefaults.textFieldColors(
+            focusedIndicatorColor = color_white,
+            unfocusedIndicatorColor = color_white,
+            containerColor = color_white
+        ),
+        textStyle = TextStyle(
+            brush = brush,
+            fontSize = 20.sp
+        )
+    )
+}
 @Preview(showBackground = true)
 @Composable
 fun PreviewDashboard(){
-    DashboardScreen(DashboardViewModel())
+    SearchScreen(SearchViewModel())
 }

@@ -70,4 +70,8 @@
     <string name="unable_to_retrieve_address">Unable to retrieve address</string>
     <string name = "starting_point">From</string>
     <string name = "ending_point">To</string>
+    <string name = "auto_id">Auto ID or Name</string>
+
+
+
 </resources>
