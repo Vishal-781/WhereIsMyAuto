@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/java/com/example/whereismyauto/search_dashboard/SearchScreen.kt
-package com.example.whereismyauto.search_dashboard
-========
 package com.example.whereismyauto.features.search_dashboard
->>>>>>>> 063cf69 (Backend Integration Started):app/src/main/java/com/example/whereismyauto/features/search_dashboard/SearchScreen.kt
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -86,11 +82,8 @@ fun SearchScreen(
                     color = MaterialTheme.colorScheme.primaryContainer
                 )
                 Icon(
-<<<<<<<< HEAD:app/src/main/java/com/example/whereismyauto/search_dashboard/SearchScreen.kt
+
                     modifier =Modifier.padding(top = 36.dp, start = 16.dp, bottom = 8.dp, end = 16.dp)
-========
-                    modifier =Modifier.padding(top = 36.dp, start = 16.dp, bottom = 16.dp, end = 24.dp)
->>>>>>>> 063cf69 (Backend Integration Started):app/src/main/java/com/example/whereismyauto/features/search_dashboard/SearchScreen.kt
                         .height(24.dp)
                         .width(24.dp),
                     painter = painterResource(id = R.drawable.profile_icon),
@@ -202,13 +195,8 @@ fun SearchScreen(
             modifier = Modifier
                 .padding(16.dp)
                 .fillMaxWidth()
-<<<<<<<< HEAD:app/src/main/java/com/example/whereismyauto/search_dashboard/SearchScreen.kt
                 .background(color_white, Shapes.medium)
                 .fillMaxHeight(),
-========
-                .height(180.dp)
-                .background(color_white, Shapes.medium)
->>>>>>>> 063cf69 (Backend Integration Started):app/src/main/java/com/example/whereismyauto/features/search_dashboard/SearchScreen.kt
         ) {
             Text(
                 text = "Active Rides",

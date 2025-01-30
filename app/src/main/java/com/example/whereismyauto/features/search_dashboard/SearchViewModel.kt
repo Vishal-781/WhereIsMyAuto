@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:app/src/main/java/com/example/whereismyauto/search_dashboard/SearchViewModel.kt
-package com.example.whereismyauto.search_dashboard
-========
 package com.example.whereismyauto.features.search_dashboard
->>>>>>>> 063cf69 (Backend Integration Started):app/src/main/java/com/example/whereismyauto/features/search_dashboard/SearchViewModel.kt
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
