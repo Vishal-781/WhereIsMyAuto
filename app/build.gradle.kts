@@ -70,13 +70,16 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.android.identity:identity-jvm:202411.1")
-
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
     implementation ("androidx.navigation:navigation-compose:2.5.3")
     implementation ("org.osmdroid:osmdroid-android:6.1.16")
     implementation ("org.osmdroid:osmdroid-wms:6.1.16")
     implementation ("org.osmdroid:osmdroid-mapsforge:6.1.16")
     implementation("androidx.activity:activity-compose:1.7.0-rc01")
-
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")

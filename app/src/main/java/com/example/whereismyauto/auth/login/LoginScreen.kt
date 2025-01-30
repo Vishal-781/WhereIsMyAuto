@@ -35,7 +35,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.whereismyauto.R
-import com.example.whereismyauto.splashscreen.SplashViewModel
+import com.example.whereismyauto.features.splashscreen.SplashViewModel
 import com.example.whereismyauto.ui.theme.color_primary
 import com.example.whereismyauto.ui.theme.color_white
 import com.example.whereismyauto.uicommon.AppHeader

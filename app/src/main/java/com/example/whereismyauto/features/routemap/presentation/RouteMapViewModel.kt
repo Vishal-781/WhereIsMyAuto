@@ -1,4 +1,4 @@
-package com.example.whereismyauto.routemap
+package com.example.whereismyauto.features.routemap.presentation
 
 import androidx.lifecycle.ViewModel
 

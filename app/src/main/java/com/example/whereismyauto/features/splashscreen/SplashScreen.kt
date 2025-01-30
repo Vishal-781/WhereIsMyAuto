@@ -1,4 +1,4 @@
-package com.example.whereismyauto.splashscreen
+package com.example.whereismyauto.features.splashscreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

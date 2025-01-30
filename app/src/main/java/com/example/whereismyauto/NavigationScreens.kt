@@ -4,12 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.whereismyauto.automapview.AutoRouteMapScreen
-import com.example.whereismyauto.automapview.AutoRoutesViewModel
-import com.example.whereismyauto.home.HomeScreen
+import com.example.whereismyauto.features.automapview.presentation.AutoRouteMapScreen
+import com.example.whereismyauto.features.automapview.presentation.AutoRoutesViewModel
+import com.example.whereismyauto.features.home.presentation.HomeScreen
 import com.example.whereismyauto.nav.NavItem
-import com.example.whereismyauto.search_dashboard.SearchScreen
-import com.example.whereismyauto.search_dashboard.SearchViewModel
+import com.example.whereismyauto.features.search_dashboard.SearchScreen
+import com.example.whereismyauto.features.search_dashboard.SearchViewModel
 
 @Composable
 fun NavigationScreens(navController: NavHostController) {

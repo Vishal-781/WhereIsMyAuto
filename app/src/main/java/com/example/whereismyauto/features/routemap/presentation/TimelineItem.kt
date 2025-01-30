@@ -1,4 +1,4 @@
-package com.example.whereismyauto.routemap
+package com.example.whereismyauto.features.routemap.presentation
 
 import android.view.LayoutInflater
 import android.widget.TextView
