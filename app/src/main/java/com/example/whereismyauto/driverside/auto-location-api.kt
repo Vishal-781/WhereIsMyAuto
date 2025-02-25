@@ -1,17 +1,8 @@
-package com.example.whereismyauto.features.home.data.datasources.remote.api
-
-import com.example.whereismyauto.features.home.data.model.AutoLocationDto
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
-
-//class AutoLocationApiImpl: AutoLocationApi {
-//    override suspend fun getAutoLocations(): List<AutoLocationDto> {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun observeAutoLocations(): Flow<List<AutoLocationDto>> {
-//        TODO("Not yet implemented")
-//    }
-//}
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.launch
 
 class AutoLocationApiImpl(
     private val redisClient: RedisClient,
@@ -21,10 +12,10 @@ class AutoLocationApiImpl(
 
     // Redis key for storing auto locations
     private val AUTO_LOCATIONS_KEY = "auto:locations"
-
+    
     // Shared flow to emit updates
     private val _autoLocationsFlow = MutableSharedFlow<List<AutoLocationDto>>(replay = 1)
-
+    
     init {
         // Initialize with empty list and start listening for Redis updates
         coroutineScope.launch {
@@ -32,7 +23,7 @@ class AutoLocationApiImpl(
             subscribeToRedisUpdates()
         }
     }
-
+    
     override suspend fun getAutoLocations(): List<AutoLocationDto> {
         return try {
             val locationsJson = redisClient.get(AUTO_LOCATIONS_KEY) ?: "[]"
@@ -46,14 +37,14 @@ class AutoLocationApiImpl(
     override fun observeAutoLocations(): Flow<List<AutoLocationDto>> {
         return _autoLocationsFlow.asSharedFlow()
     }
-
+    
     private suspend fun subscribeToRedisUpdates() {
         try {
             redisClient.subscribe(AUTO_LOCATIONS_KEY) { message ->
                 coroutineScope.launch {
                     try {
                         val locations = objectMapper.readValue(
-                            message,
+                            message, 
                             object : TypeReference<List<AutoLocationDto>>() {}
                         )
                         _autoLocationsFlow.emit(locations)
@@ -66,7 +57,7 @@ class AutoLocationApiImpl(
             println("Error subscribing to Redis: ${e.message}")
         }
     }
-
+    
     // Method to update locations (could be called from elsewhere in your application)
     suspend fun updateAutoLocations(locations: List<AutoLocationDto>) {
         try {

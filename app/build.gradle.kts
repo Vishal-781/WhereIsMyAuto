@@ -80,6 +80,16 @@ dependencies {
     implementation ("org.osmdroid:osmdroid-mapsforge:6.1.16")
     implementation("androidx.activity:activity-compose:1.7.0-rc01")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+    // For Google Play Services Location
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    // For Redis client (Jedis)
+    implementation ("redis.clients:jedis:5.0.2")
+
+// Alternative Redis client (Lettuce)
+    implementation ("io.lettuce:lettuce-core:6.3.1.RELEASE")
+
+// Spring Data Redis (if using Spring)
+    implementation ("org.springframework.boot:spring-boot-starter-data-redis:3.2.3")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
