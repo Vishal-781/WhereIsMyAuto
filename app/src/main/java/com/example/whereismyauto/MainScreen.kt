@@ -16,6 +16,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.whereismyauto.nav.Item
 import com.example.whereismyauto.nav.NavItem
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import com.example.whereismyauto.navigation.DriverNavHost
+import com.example.whereismyauto.navigation.UserNavHost
 import com.example.whereismyauto.ui.theme.WhereIsMyAutoTheme
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -47,3 +51,34 @@ fun MainScreen(
     }
 }
 
+
+
+@Composable
+fun DriverMainScreen(navHostController: NavHostController) {
+    Scaffold { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            // Driver-specific UI components like map for tracking,
+            // vehicle status, route information, etc.
+            DriverNavHost(navHostController = navHostController)
+        }
+    }
+}
+
+@Composable
+fun UserMainScreen(navHostController: NavHostController) {
+    Scaffold { paddingValues ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+        ) {
+            // User-specific UI components like vehicle tracking map,
+            // ETA information, booking interface, etc.
+            UserNavHost(navHostController = navHostController)
+        }
+    }
+}
